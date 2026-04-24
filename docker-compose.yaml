@@ -1,0 +1,29 @@
+name: px4-swarm
+
+services:
+  px4_0:
+    image: px4io/px4-sitl:latest
+    command: ["-i", "0"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "14550:14550/udp"
+      - "14540:14540/udp"
+
+  px4_1:
+    image: px4io/px4-sitl:latest
+    command: ["-i", "1"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "14551:14551/udp"
+      - "14541:14541/udp"
+
+  px4_2:
+    image: px4io/px4-sitl:latest
+    command: ["-i", "2"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "14552:14552/udp"
+      - "14542:14542/udp"
