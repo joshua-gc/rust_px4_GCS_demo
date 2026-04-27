@@ -1,8 +1,18 @@
 use crate::{AnyResult, Conn, Msg};
 use mavlink::{common, MavConnection, SigningConfig};
 use sha2::{Digest, Sha256};
+use std::thread;
+use std::time::Duration;
 const RUST_LINK_ID: u8 = 42;
 const SIGNING_PHRASE: &str = "my-secure-key-123";
+pub fn enable_signing(conn: &mut Conn, target_system: u8, target_component: u8) -> AnyResult<()> {
+    let key = derive_signing_key(SIGNING_PHRASE);
+    send_setup_signing(conn, target_system, target_component, key)?;
+    thread::sleep(Duration::from_secs(2));
+
+    setup_signing(conn, key);
+    Ok(())
+}
 fn derive_signing_key(passphrase: &str) -> [u8; 32] {
     let mut hasher = Sha256::new();
     hasher.update(passphrase.as_bytes());
@@ -43,7 +53,7 @@ fn mavlink_signing_timestamp_now() -> u64 {
     let secs_since_2015 = now.as_secs().saturating_sub(MAVLINK_EPOCH_UNIX_SECS);
     secs_since_2015 * 100_000 + u64::from(now.subsec_micros() / 10)
 }
-fn enable_signing(conn: &mut Conn, key: [u8; 32]) {
+fn setup_signing(conn: &mut Conn, key: [u8; 32]) {
     let signing = SigningConfig::new(key, RUST_LINK_ID, true, false);
 
     conn.setup_signing(Some(signing));
