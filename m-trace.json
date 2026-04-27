@@ -1,0 +1,170 @@
+{
+  "drones": [
+    {
+      "name": "uav1_S",
+      "endpoint": "udpin:0.0.0.0:14540",
+      "expected_system_id": 1,
+      "arm": true,
+      "auto_start": true,
+      "mission": [
+        {
+          "type": "takeoff",
+          "rel_alt_m": 18.0
+        },
+        {
+          "type": "waypoint",
+          "north_m": 0.0,
+          "east_m": -24.0,
+          "rel_alt_m": 18.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -20.0,
+          "east_m": -24.0,
+          "rel_alt_m": 18.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -20.0,
+          "east_m": 0.0,
+          "rel_alt_m": 18.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 0.0,
+          "rel_alt_m": 18.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": -24.0,
+          "rel_alt_m": 18.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "land",
+          "north_m": -40.0,
+          "east_m": -24.0
+        }
+      ]
+    },
+    {
+      "name": "uav2_I",
+      "endpoint": "udpin:0.0.0.0:14541",
+      "expected_system_id": 2,
+      "arm": true,
+      "auto_start": true,
+      "mission": [
+        {
+          "type": "takeoff",
+          "rel_alt_m": 20.0
+        },
+        {
+          "type": "waypoint",
+          "north_m": 0.0,
+          "east_m": 24.0,
+          "rel_alt_m": 20.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": 0.0,
+          "east_m": 12.0,
+          "rel_alt_m": 20.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 12.0,
+          "rel_alt_m": 20.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 0.0,
+          "rel_alt_m": 20.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 24.0,
+          "rel_alt_m": 20.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "land",
+          "north_m": -40.0,
+          "east_m": 24.0
+        }
+      ]
+    },
+    {
+      "name": "uav3_X",
+      "endpoint": "udpin:0.0.0.0:14542",
+      "expected_system_id": 3,
+      "arm": true,
+      "auto_start": true,
+      "mission": [
+        {
+          "type": "takeoff",
+          "rel_alt_m": 22.0
+        },
+        {
+          "type": "waypoint",
+          "north_m": -20.0,
+          "east_m": 12.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 24.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -20.0,
+          "east_m": 12.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": 0.0,
+          "east_m": 24.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -20.0,
+          "east_m": 12.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "waypoint",
+          "north_m": -40.0,
+          "east_m": 0.0,
+          "rel_alt_m": 22.0,
+          "acceptance_radius_m": 1.5
+        },
+        {
+          "type": "land",
+          "north_m": -40.0,
+          "east_m": 0.0
+        }
+      ]
+    }
+  ]
+}
