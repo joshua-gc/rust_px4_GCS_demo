@@ -1,8 +1,9 @@
-use crate::{AnyResult, Conn, Msg};
+use crate::mavlink_client::{AnyResult, Conn, Msg};
 use mavlink::{common, MavConnection, SigningConfig};
 use sha2::{Digest, Sha256};
 use std::thread;
 use std::time::Duration;
+
 const RUST_LINK_ID: u8 = 42;
 const SIGNING_PHRASE: &str = "my-secure-key-123";
 pub fn enable_signing(conn: &mut Conn, target_system: u8, target_component: u8) -> AnyResult<()> {

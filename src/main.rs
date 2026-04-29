@@ -1,14 +1,5 @@
-mod config;
-mod consensus;
-mod event_log;
-mod fault_injection;
-mod mavlink_client;
-mod mission;
-mod swarm_supervisor;
-mod vehicle_actor;
-
-use crate::mavlink_client::AnyResult;
-use crate::swarm_supervisor::run_mission_file;
+use rust_px4_GCS_demo::mavlink_client::AnyResult;
+use rust_px4_GCS_demo::swarm_supervisor::run_mission_file;
 
 const DEFAULT_MISSION_FILES: [&str; 2] = ["m-stage.json", "m-trace.json"];
 
