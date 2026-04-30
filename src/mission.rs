@@ -1,8 +1,9 @@
 use crate::mavlink_client::AnyResult;
 use mavlink::common;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum MissionSpec {
     Takeoff {
@@ -109,6 +110,39 @@ pub fn build_relative_mission_items(
     }
 
     Ok(out)
+}
+
+pub fn hash_mission_specs(mission: &[MissionSpec]) -> AnyResult<String> {
+    Ok(hex_sha256(&serde_json::to_vec(mission)?))
+}
+
+pub fn hash_mission_items(mission: &[common::MISSION_ITEM_INT_DATA]) -> String {
+    let mut hasher = Sha256::new();
+
+    for item in mission {
+        hasher.update(item.param1.to_le_bytes());
+        hasher.update(item.param2.to_le_bytes());
+        hasher.update(item.param3.to_le_bytes());
+        hasher.update(item.param4.to_le_bytes());
+        hasher.update(item.x.to_le_bytes());
+        hasher.update(item.y.to_le_bytes());
+        hasher.update(item.z.to_le_bytes());
+        hasher.update(item.seq.to_le_bytes());
+        hasher.update(format!("{:?}", item.command).as_bytes());
+        hasher.update([item.target_system]);
+        hasher.update([item.target_component]);
+        hasher.update(format!("{:?}", item.frame).as_bytes());
+        hasher.update([item.current]);
+        hasher.update([item.autocontinue]);
+    }
+
+    format!("{:?}", hasher.finalize())
+}
+
+fn hex_sha256(bytes: &[u8]) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(bytes);
+    format!("{:?}", hasher.finalize())
 }
 
 pub fn offset_lat_lon(lat_deg: f64, lon_deg: f64, north_m: f64, east_m: f64) -> (f64, f64) {
