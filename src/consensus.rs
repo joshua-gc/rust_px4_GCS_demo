@@ -1,8 +1,8 @@
-//! Placeholder module for Phase 2.
+//! Placeholder module for Phase 3.
 //!
-//! This file is intentionally small in the Phase 1 refactor. The goal is to
-//! reserve a clean boundary for swarm-level readiness voting, quorum policies,
-//! and mission-phase agreement without changing the current runtime behaviour.
+//! Phase 2 introduced supervisor/vehicle actors and event channels. This file
+//! remains the clean boundary for the next step: swarm-level readiness voting,
+//! quorum policies, and mission-phase agreement.
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum MissionPhase {
